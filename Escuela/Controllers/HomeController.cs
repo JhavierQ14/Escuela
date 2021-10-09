@@ -1,4 +1,6 @@
-﻿using Escuela.Models;
+﻿using Escuela.Dominio;
+using Escuela.Models;
+using Escuela.Servicio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,17 +14,37 @@ namespace Escuela.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+         private ICourse icourse;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,ICourse icourse)
         {
+            this.icourse = icourse;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+            Course course = new Course();
+
+            course.Title = "poo";
+            course.Credits = 100;
+            icourse.Insertar(course);
+
             return View();
         }
 
+        public IActionResult NuevaVista()
+        {
+            return View();
+        }
+
+            public IActionResult GetALL()
+        {
+            var DandoFormatoJson = icourse.ListarCursos();
+
+
+            return Json(new { data = DandoFormatoJson });
+        }
         public IActionResult Privacy()
         {
             return View();

@@ -77,3 +77,4 @@ C:\Users\carlj\source\repos\Escuela\Escuela\obj\Debug\net5.0\Escuela.dll
 C:\Users\carlj\source\repos\Escuela\Escuela\obj\Debug\net5.0\ref\Escuela.dll
 C:\Users\carlj\source\repos\Escuela\Escuela\obj\Debug\net5.0\Escuela.pdb
 C:\Users\carlj\source\repos\Escuela\Escuela\obj\Debug\net5.0\Escuela.genruntimeconfig.cache
+C:\Users\carlj\source\repos\Escuela\Escuela\obj\Debug\net5.0\Razor\Views\Home\NuevaVista.cshtml.g.cs
