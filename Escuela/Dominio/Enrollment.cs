@@ -7,28 +7,29 @@ using System.Threading.Tasks;
 
 namespace Escuela.Dominio
 {
-    public enum Grade
-    { 
-    A,B,C,D
-    
-    }
+   
     public class Enrollment
     {
+        public enum Grade
+        {
+            A, B, C, D
+        }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
-        public int EnrrollmentsId { get; set; }
+        public int EnrollmentId { get; set; }
 
         public int CourseId { get; set; }
 
         public int StudentId { get; set; }
 
-        public Grade? Grade { get; set; } 
+        public Grade? grade { get; set; }
 
         public Course Course { get; set; }
 
-        public Students Students { get; set; }
+        public Students Student { get; set; }
+
+
 
     }
 }

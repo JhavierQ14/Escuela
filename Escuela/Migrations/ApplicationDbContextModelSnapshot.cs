@@ -39,7 +39,7 @@ namespace Escuela.Migrations
 
             modelBuilder.Entity("Escuela.Dominio.Enrollment", b =>
                 {
-                    b.Property<int>("EnrrollmentsId")
+                    b.Property<int>("EnrollmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -47,20 +47,17 @@ namespace Escuela.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Grade")
-                        .HasColumnType("int");
-
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentsId")
+                    b.Property<int?>("grade")
                         .HasColumnType("int");
 
-                    b.HasKey("EnrrollmentsId");
+                    b.HasKey("EnrollmentId");
 
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("StudentsId");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Enrollments");
                 });
@@ -94,13 +91,15 @@ namespace Escuela.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Escuela.Dominio.Students", "Students")
+                    b.HasOne("Escuela.Dominio.Students", "Student")
                         .WithMany("Enrollments")
-                        .HasForeignKey("StudentsId");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Course");
 
-                    b.Navigation("Students");
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Escuela.Dominio.Course", b =>

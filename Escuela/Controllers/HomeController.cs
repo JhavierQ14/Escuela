@@ -15,32 +15,43 @@ namespace Escuela.Controllers
     {
         private readonly ILogger<HomeController> _logger;
          private ICourse icourse;
+        private IRollements irollements;
 
-        public HomeController(ILogger<HomeController> logger,ICourse icourse)
+        public HomeController(ILogger<HomeController> logger,ICourse icourse, IRollements irollements)
         {
+            this.irollements = irollements;
             this.icourse = icourse;
             _logger = logger;
         }
 
         public IActionResult Index()
+            
         {
             Course course = new Course();
-
-            course.Title = "poo";
+           
+            course.Title = "update";
             course.Credits = 100;
             icourse.Insertar(course);
 
+      
             return View();
         }
 
-        public IActionResult NuevaVista()
+        public IActionResult Join()
+        {
+            var listado = irollements.UnionDeTablas();
+
+            return View(listado);
+        }
+
+            public IActionResult NuevaVista()
         {
             return View();
         }
 
             public IActionResult GetALL()
         {
-            var DandoFormatoJson = icourse.ListarCursos();
+             var DandoFormatoJson = icourse.ListarCursos();
 
 
             return Json(new { data = DandoFormatoJson });
